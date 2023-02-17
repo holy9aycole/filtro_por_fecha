@@ -1,0 +1,31 @@
+.filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    .filter__container {
+        margin-right: 2rem;
+        .filter__item {
+            padding: .5rem;
+            border: 1px solid #ddd;
+            margin-right: 1rem;
+            font-weight: 600;
+            font-size: .92rem;
+            input {
+                border: none;
+                font-size: .92rem;
+            }
+        }
+        .filter__button {
+            padding: .25rem;
+            background: #eee;
+            border: 1px solid #ddd;
+            font-size: .92rem;
+            cursor: pointer;
+        }
+    }
+    .filter__link {
+        color: blue;
+        font-size: .92rem;
+    }
+}

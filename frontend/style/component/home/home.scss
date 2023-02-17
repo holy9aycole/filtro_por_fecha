@@ -1,0 +1,12 @@
+@import "./filter.scss";
+@import "./cars.scss";
+@import "./graphic.scss";
+
+.home {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr 15rem;
+    gap: 1rem;
+    padding: 2rem;
+    margin:  0 10%;
+}

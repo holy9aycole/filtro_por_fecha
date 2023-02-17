@@ -1,0 +1,36 @@
+.cars {
+    margin-top: 1rem;
+    .cars__header, .cars__container .cars__item {
+        display: grid;
+        grid-template-columns: 20rem 1fr 1fr 1fr;
+    }
+    .cars__header {
+        background: #eee;
+        padding: .25rem 0;
+        border: 1px solid #ccc;
+        .cars__header__item {
+            padding-left: 1rem;
+            border-right: 1px solid #000;
+            font-weight: 500;
+            font-size: .92rem;
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+    .cars__container {
+        padding: 0 .5rem;
+        overflow-y: scroll;
+        max-height: 15rem;
+        .cars__item {
+            padding: .5rem 0;
+            &:nth-child(even) {
+                background: #eee;
+            }
+            span {
+                padding-left: 1rem;
+                font-size: .92rem;
+            }
+        }
+    }
+}
