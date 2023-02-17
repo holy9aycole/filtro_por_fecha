@@ -82,7 +82,6 @@ const Register = () => {
             type="date"
             id="date"
             name="date"
-            required
             className="register__form__input"
           />
         </div>

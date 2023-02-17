@@ -37,17 +37,27 @@ const getCar = (req, res, next) => {
   const _end = end == undefined || end == "" ? undefined : end;
 
   const filter = {};
-  // if (_start == undefined && _end == undefined)
   if (_start) {
-    // if (_end == undefined) filter["$eq"] = _start;
-    filter["$gte"] = _start;
+    filter["$gte"] = new Date(_start).toISOString();
+    if (_end == undefined) {
+      filter["$lt"] = new Date(
+        /* Sumar mas 24 horas a la fecha final para que tome los registros
+         * registrados de 00:00:00 de la fecha inicial a 00:00:00 de la fecha final */
+        new Date(_start).getTime() + 1000 * 3600 * 24
+      ).toISOString();
+    }
   }
   if (_end) {
-    // if (_start == undefined) filter["$eq"] = _end;
-    filter["$lte"] = _end;
+    /* Fechas menores a la fecha final.
+     * Si no se especifica la fecha incial se devolvera todos los registros
+     * registrados hasta la fecha final (inclusive) */
+    filter["$lt"] = new Date(
+      /* Sumar mas 24 horas a la fecha final porque las fechas tanto inicial
+       * como final tienen el tiempo 00:00:00 y para cubrir todo el dia (inclusive)
+       * le sumamos mas 24 horas */
+      new Date(_end).getTime() + 1000 * 3600 * 24
+    ).toISOString();
   }
-
-  console.log(filter);
 
   Car.find({
     date: filter,
@@ -93,7 +103,7 @@ const postCar = (req, res, next) => {
     brand,
     model,
     owner,
-    date,
+    date: date || new Date(),
   });
 
   /* Crear coche */
