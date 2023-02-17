@@ -1,0 +1,8 @@
+{
+  "name": "registro_coches",
+  "version": "0.0.1",
+  "description": "Registro de coches con filtro de intervalos de fechas y con gráfico de muestra",
+  "main": "index.js",
+  "author": "@Holy",
+  "license": "MIT"
+}
