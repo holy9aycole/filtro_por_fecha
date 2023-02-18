@@ -52,22 +52,23 @@ const Home = () => {
   /* Marcas disponibles */
   const [brands, setBrands] = useState({});
   useEffect(() => {
-    const params = new URLSearchParams({
-      start,
-      end,
-      page,
-    });
-    fetch(API + "/car?" + params, { method: "GET" })
-      .then((res) => res.json())
-      .then((data) => {
+    (async () => {
+      const params = new URLSearchParams({
+        start,
+        end,
+        page,
+      });
+      try {
+        const res = await fetch(API + "/car?" + params, { method: "GET" });
+        const data = await res.json();
         if (data.status === "OK") {
           setCars(data.cars);
           setBrands(data.brands);
         }
-      })
-      .catch((err) => {
+      } catch (err) {
         console.error(err);
-      });
+      }
+    })();
   }, [page]);
 
   return (

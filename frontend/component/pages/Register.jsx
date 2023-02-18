@@ -8,7 +8,7 @@ import { API } from "../../util";
 const Register = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const brand = formData.get("brand");
@@ -23,15 +23,14 @@ const Register = () => {
       },
       body: JSON.stringify({ brand, model, owner, date }),
     };
-    fetch(API + "/car", fetchOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "OK") navigate("/");
-        else; /* no hacer nanda */
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    try {
+      const res = await fetch(API + "/car", fetchOptions);
+      const data = await res.json();
+      if (data.status === "OK") navigate("/");
+      else; /* no hacer nanda */
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
